@@ -7,7 +7,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { HttpClientModule } from '@angular/common/http';
 
+import { MainLibraryBookDataService } from './main-library-data-service.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -19,7 +21,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatIconModule,
     MatListModule,
     MatToolbarModule,
+    HttpClientModule,
   MatSidenavModule],
+  providers: [MainLibraryBookDataService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

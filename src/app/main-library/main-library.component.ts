@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable, ReplaySubject} from 'rxjs';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
+
+
+import { MainLibraryBookDataService } from '../main-library-data-service.service';
 
 export interface PeriodicElement {
   name: string;
@@ -10,18 +13,14 @@ export interface PeriodicElement {
   weight: number;
   symbol: string;
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+export interface Book {
+  bookTitle: string;
+  author: string;
+  numberOfPages: number;
+  genres: string[];
+  review: number;
+  description: string;
+}
 
 @Component({
   selector: 'app-main-library',
@@ -31,39 +30,59 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrl: './main-library.component.css',
 
 })
-export class MainLibraryComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataToDisplay = [...ELEMENT_DATA];
-
+export class MainLibraryComponent implements OnInit {
+  constructor(private bookDataService: MainLibraryBookDataService) {}
+ 
+  displayedColumns: string[] = ['bookTitle', 'author', 'numberOfPages', 'genres', 'review', 'description'];
+  dataToDisplay: Book[] = [];
   dataSource = new ExampleDataSource(this.dataToDisplay);
 
   addData() {
-    const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);
-    this.dataToDisplay = [...this.dataToDisplay, ELEMENT_DATA[randomElementIndex]];
-    this.dataSource.setData(this.dataToDisplay);
+
   }
 
   removeData() {
-    this.dataToDisplay = this.dataToDisplay.slice(0, -1);
-    this.dataSource.setData(this.dataToDisplay);
+
+  }
+
+  ngOnInit(): void {
+    this.bookDataService.getData().subscribe(
+      (data: any) => {
+        this.dataToDisplay = data.map((item: any) => {
+          return {
+            bookTitle: item.bookTitle,
+            author: item.author,
+            numberOfPages: item.numberOfPages,
+            genres: item.genres,
+            review: item.review,
+            description: item.description,
+          };
+        });
+
+        this.dataSource.setData(this.dataToDisplay);
+      },
+      (error: any) => {
+        console.error('Error fetching data:', error);
+      }
+    );
   }
 }
 
-class ExampleDataSource extends DataSource<PeriodicElement> {
-  private _dataStream = new ReplaySubject<PeriodicElement[]>();
+class ExampleDataSource extends DataSource<Book> {
+  private _dataStream = new ReplaySubject<Book[]>();
 
-  constructor(initialData: PeriodicElement[]) {
+  constructor(initialData: Book[]) {
     super();
     this.setData(initialData);
   }
 
-  connect(): Observable<PeriodicElement[]> {
+  connect(): Observable<Book[]> {
     return this._dataStream;
   }
 
   disconnect() {}
 
-  setData(data: PeriodicElement[]) {
+  setData(data: Book[]) {
     this._dataStream.next(data);
   }
 }
