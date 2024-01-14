@@ -7,12 +7,6 @@ import {MatButtonModule} from '@angular/material/button';
 
 import { MainLibraryBookDataService } from '../main-library-data-service.service';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 export interface Book {
   bookTitle: string;
   author: string;

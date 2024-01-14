@@ -1,13 +1,4 @@
 
-<div class="demo-button-container">
-    <button mat-raised-button (click)="addData()" class="demo-button">
-      Add data
-    </button>
-    <button mat-raised-button [disabled]="!dataToDisplay.length" (click)="removeData()" class="demo-button">
-      Remove data
-    </button>
-</div>
-
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
     <ng-container matColumnDef="bookTitle">
         <th mat-header-cell *matHeaderCellDef>Book Title</th>
@@ -42,3 +33,12 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<div class="demo-button-container">
+  <button mat-raised-button (click)="addData()" class="demo-button">
+    Add Book To personal Library
+  </button>
+  <button mat-raised-button [disabled]="!dataToDisplay.length" (click)="removeData()" class="demo-button">
+    Remove Book
+  </button>
+</div>

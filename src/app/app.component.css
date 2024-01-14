@@ -1,5 +1,4 @@
 .example-container {
-    border: 1px solid rgba(0, 0, 0, 0.5);
     height: 100%;
   }
   
@@ -13,4 +12,3 @@
   .example-sidenav {
     padding: 20px;
   }
-  
