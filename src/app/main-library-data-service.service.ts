@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,6 @@ export class MainLibraryBookDataService {
         }
       );
     } else {
-      // If data is already fetched, emit the existing data to any new subscribers
       this.dataSubject.next(this.dataSubject.value);
     }
   }
@@ -45,6 +44,9 @@ addEntry(newEntry:any):void
 printData(): void {
   const currentData = this.dataSubject.value;
   console.log('Current Data Array:', currentData);
+}
+getDataAtIndex(index: number): Observable<any | null> {
+  return this.data$.pipe(map(data => (index >= 0 && index < data.length) ? data[index] : null));
 }
 }
 

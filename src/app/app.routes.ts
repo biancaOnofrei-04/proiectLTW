@@ -5,6 +5,7 @@ import { PersonalLibraryComponent } from './personal-library/personal-library.co
 import { MainLibraryComponent } from './main-library/main-library.component';
 import { AddBooksComponent } from './add-books/add-books.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/main-library', pathMatch: 'full' }, // Default route
@@ -16,7 +17,8 @@ export const routes: Routes = [
   ];
   @NgModule({
     imports: [RouterModule.forRoot(routes),
-    ReactiveFormsModule],
+    ReactiveFormsModule
+    ,],
     exports: [RouterModule],
   })
   export class AppRoutingModule {}
