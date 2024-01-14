@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {MatButtonModule} from '@angular/material/button';
-import { MainLibraryBookDataService } from '../main-library-data-service.service';
+import { MainLibraryBookDataService } from '../services/main-library-data-service.service';
 
 
 @Component({

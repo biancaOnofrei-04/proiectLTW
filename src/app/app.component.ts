@@ -11,7 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
-import { MainLibraryBookDataService } from './main-library-data-service.service';
+import { MainLibraryBookDataService } from './services/main-library-data-service.service';
+import { PersonalBooksServiceService } from './services/personal-books-service.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -26,7 +27,7 @@ import { MainLibraryBookDataService } from './main-library-data-service.service'
     HttpClientModule,
     ReactiveFormsModule,
   MatSidenavModule],
-  providers: [MainLibraryBookDataService],
+  providers: [MainLibraryBookDataService,PersonalBooksServiceService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -6,8 +6,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 
-import { MainLibraryBookDataService } from '../main-library-data-service.service';
+import { MainLibraryBookDataService } from '../services/main-library-data-service.service';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { PersonalBooksServiceService } from '../services/personal-books-service.service';
 
 export interface Book {
   bookTitle: string;
@@ -27,33 +28,16 @@ export interface Book {
 
 })
 export class MainLibraryComponent implements OnInit {
-  constructor(private bookDataService: MainLibraryBookDataService, private dialog: MatDialog) {}
+  constructor(private bookDataService: MainLibraryBookDataService, 
+              private dialog: MatDialog,
+              private personalBookService: PersonalBooksServiceService) {}
  
   displayedColumns: string[] = ['bookTitle', 'author', 'numberOfPages', 'genres', 'review', 'description'];
   dataToDisplay: Book[] = [];
   dataSource = new ExampleDataSource(this.dataToDisplay);
   selectedRowIndex: number = -1;
 
-  // openConfirmationDialog(): void {
-  //   this.bookDataService.getDataAtIndex(this.selectedRowIndex).subscribe((book: Book | null) => {
-  //     if (book !== null) {
-  //       const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
-  //         data: { bookTitle: book.bookTitle },
-  //       });
-  
-  //       dialogRef.afterClosed().subscribe((result) => {
-  //         if (result) {
-  //           this.removeData();
-  //         }
-  //       });
-  //     }
-  //   });
-  // }
-  
-
-
   ngOnInit(): void {
-    console.log("Hello :)")
     this.bookDataService.fetchData();
     this.bookDataService.data$.subscribe((data) => {
       this.dataSource.setData(data);
@@ -84,8 +68,16 @@ export class MainLibraryComponent implements OnInit {
       map((book: Book | null) => (book !== null ? book.bookTitle : null))
     );
   }
-  addData() {
-
+  addData(): void {
+    this.bookDataService.getDataAtIndex(this.selectedRowIndex).subscribe((book: Book | null) => {
+      if (book !== null) {
+        const personalBook = {
+          ...book,
+          dateAdded: new Date(),
+        };
+        this.personalBookService.addPersonalBook(personalBook);
+      }
+    });
   }
 
 
