@@ -34,7 +34,8 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index"
       [ngClass]="{'highlight': selectedRowIndex === i}"
-      (click)="highlightRow(i)">
+      (click)="highlightRow(i)"
+      (click)="getTableData(row)">
   </tr>
   
     </table>
@@ -42,10 +43,10 @@
 
 
   <div class="demo-button-container">
-    <button mat-raised-button (click)="addData()" class="demo-button">
+    <button mat-raised-button  [disabled]="selectedRowIndex === -1" (click)="addData()" class="demo-button">
       Add Book To personal Library
     </button>
-    <button mat-raised-button [disabled]="selectedRowIndex === -1" (click)="removeData()" class="demo-button">
+    <button mat-raised-button [disabled]="selectedRowIndex === -1" (click)="openDialog()" class="demo-button">
       Remove Book
     </button>
   </div>

@@ -27,6 +27,7 @@ export class PersonalLibraryComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataToDisplay=this.personalBookSerive.getAllPersonalBooks();
+    console.log(this.personalBookSerive.getAllPersonalBooks())
     this.dataSource.setData(this.dataToDisplay);
   }
 

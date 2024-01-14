@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MainLibraryBookDataService } from '../services/main-library-data-service.service';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { PersonalBooksServiceService } from '../services/personal-books-service.service';
+import { PersonalBook } from '../services/personal-book-model';
 
 export interface Book {
   bookTitle: string;
@@ -36,6 +37,15 @@ export class MainLibraryComponent implements OnInit {
   dataToDisplay: Book[] = [];
   dataSource = new ExampleDataSource(this.dataToDisplay);
   selectedRowIndex: number = -1;
+  selectedBook: Book = {
+    bookTitle: '',
+    author: '',
+    numberOfPages: 0,
+    genres: [],
+    review: 0,
+    description: ''
+  };
+  
 
   ngOnInit(): void {
     this.bookDataService.fetchData();
@@ -45,22 +55,26 @@ export class MainLibraryComponent implements OnInit {
   
     
   }
+  openDialog(): void {
   
-  removeData(): void {
-    this.getBookTitle().subscribe((bookTitle: string | null) => {
-      if (this.selectedRowIndex !== -1 && bookTitle !== null) {
-        const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
-          data: { bookTitle: bookTitle },
-        });
+    // Use the placeholder directly instead of calling getBookTitle
+    if (this.selectedRowIndex !== -1) {
+      const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+        data: { bookTitle: this.selectedBook.bookTitle},
+      });
   
-        dialogRef.afterClosed().subscribe((result) => {
-          if (result) {
-            this.bookDataService.removeEntry(this.selectedRowIndex);
-            this.selectedRowIndex = -1;
-          }
-        });
-      }
-    });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.removeEntryAndResetIndex();
+        }
+      });
+    }
+  }
+  private removeEntryAndResetIndex(): void {
+    if (this.selectedRowIndex !== -1) {
+      this.bookDataService.removeEntry(this.selectedRowIndex);
+      this.resetSelectedData();
+    }
   }
   
   getBookTitle(): Observable<string | null> {
@@ -69,22 +83,43 @@ export class MainLibraryComponent implements OnInit {
     );
   }
   addData(): void {
-    this.bookDataService.getDataAtIndex(this.selectedRowIndex).subscribe((book: Book | null) => {
-      if (book !== null) {
-        const personalBook = {
-          ...book,
-          dateAdded: new Date(),
-        };
-        this.personalBookService.addPersonalBook(personalBook);
-      }
-    });
-  }
 
+    if(this.selectedRowIndex!==-1)
+    {
+      const personalBook: PersonalBook=
+      {
+        ...this.selectedBook,
+        dateAdded:new Date(),
+      };
+      this.personalBookService.addPersonalBook(personalBook);
+      this.resetSelectedData();
+
+    }
+  }
 
   highlightRow(index:number):void
   {
     this.selectedRowIndex=index;
     console.log(index);
+  }
+  getTableData(row:any)
+  {
+    const book:Book = row as Book;
+    this.selectedBook=book;
+
+  }
+
+  resetSelectedData()
+  {
+      this.selectedBook={
+        bookTitle: '',
+        author: '',
+        numberOfPages: 0,
+        genres: [],
+        review: 0,
+        description: ''
+      };
+      this.selectedRowIndex=-1;
   }
 
 
