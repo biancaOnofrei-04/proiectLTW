@@ -4,7 +4,6 @@ import {DataSource} from '@angular/cdk/collections';
 import {Observable, ReplaySubject} from 'rxjs';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
-import { saveAs } from 'file-saver';
 
 
 import { MainLibraryBookDataService } from '../main-library-data-service.service';
@@ -38,28 +37,22 @@ export class MainLibraryComponent implements OnInit {
 
   }
 
+  ngOnInit(): void {
+    console.log("Hello :)")
+    this.bookDataService.fetchData();
+    this.bookDataService.data$.subscribe((data) => {
+      this.dataSource.setData(data);
+    });
+  
+    
+  }
+  
   removeData() {
-    if (this.selectedRowIndex !== -1 || this.selectedRowIndex !== undefined) {
-      // Remove the selected entry from dataToDisplay
-      this.dataToDisplay.splice(this.selectedRowIndex, 1);
-  
-      // Update the table with the modified data
-      this.dataSource.setData(this.dataToDisplay);
-  
-      // Convert the dataToDisplay to a JSON string
-      const jsonString = JSON.stringify(this.dataToDisplay, null, 2);
-  
-      // Create a Blob containing the JSON data
-      const blob = new Blob([jsonString], { type: 'application/json' });
-  
-      // Save the Blob as a file (mainLib.json)
-      saveAs(blob, 'mainLib.json');
-  
-      // Reset the selectedRowIndex
+    if (this.selectedRowIndex !== -1) {
+      this.bookDataService.removeEntry(this.selectedRowIndex);
       this.selectedRowIndex = -1;
     }
   }
-  
 
   highlightRow(index:number):void
   {
@@ -69,27 +62,7 @@ export class MainLibraryComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
-    this.bookDataService.getData().subscribe(
-      (data: any) => {
-        this.dataToDisplay = data.map((item: any) => {
-          return {
-            bookTitle: item.bookTitle,
-            author: item.author,
-            numberOfPages: item.numberOfPages,
-            genres: item.genres,
-            review: item.review,
-            description: item.description,
-          };
-        });
 
-        this.dataSource.setData(this.dataToDisplay);
-      },
-      (error: any) => {
-        console.error('Error fetching data:', error);
-      }
-    );
-  }
 }
 
 class ExampleDataSource extends DataSource<Book> {
