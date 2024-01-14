@@ -24,15 +24,27 @@ export class MainLibraryBookDataService {
           console.error('Error fetching data:', error);
         }
       );
+    } else {
+      // If data is already fetched, emit the existing data to any new subscribers
+      this.dataSubject.next(this.dataSubject.value);
     }
   }
+  
   removeEntry(index: number): void {
     const currentData = this.dataSubject.value;
     currentData.splice(index, 1);
     this.dataSubject.next(currentData);
-
-
   
-
-}}
+}
+addEntry(newEntry:any):void
+{
+  const currentData = this.dataSubject.value;
+  currentData.push(newEntry);
+  this.dataSubject.next(currentData);
+}
+printData(): void {
+  const currentData = this.dataSubject.value;
+  console.log('Current Data Array:', currentData);
+}
+}
 

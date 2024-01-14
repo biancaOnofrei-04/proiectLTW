@@ -33,10 +33,6 @@ export class MainLibraryComponent implements OnInit {
   dataSource = new ExampleDataSource(this.dataToDisplay);
   selectedRowIndex: number = -1;
 
-  addData() {
-
-  }
-
   ngOnInit(): void {
     console.log("Hello :)")
     this.bookDataService.fetchData();
@@ -53,6 +49,10 @@ export class MainLibraryComponent implements OnInit {
       this.selectedRowIndex = -1;
     }
   }
+  addData() {
+
+  }
+
 
   highlightRow(index:number):void
   {

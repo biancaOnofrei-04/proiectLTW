@@ -8,6 +8,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MainLibraryBookDataService } from './main-library-data-service.service';
 @Component({
@@ -22,6 +23,7 @@ import { MainLibraryBookDataService } from './main-library-data-service.service'
     MatListModule,
     MatToolbarModule,
     HttpClientModule,
+    ReactiveFormsModule,
   MatSidenavModule],
   providers: [MainLibraryBookDataService],
   templateUrl: './app.component.html',

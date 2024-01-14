@@ -1,1 +1,64 @@
-<p>add-books works!</p>
+
+<h1>
+    <mat-icon class="book-icon">book</mat-icon>
+    Add data to the form below to add a new book to the library!
+    <mat-icon class="book-icon">book</mat-icon>
+</h1>
+
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class = "custom-form">
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Book Title</mat-label>
+        <input matInput formControlName="bookTitle" required>
+      </mat-form-field>
+    </div>
+  
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Author</mat-label>
+        <input matInput formControlName="author" required>
+      </mat-form-field>
+    </div>
+  
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Number of Pages</mat-label>
+        <input matInput type="number" formControlName="numberOfPages" required>
+      </mat-form-field>
+    </div>
+  
+    <div>
+        <mat-form-field>
+          <mat-label>Genres</mat-label>
+          <mat-select [formControl]="genres" multiple>
+            <mat-select-trigger>
+              {{ genres.value?.[0] || '' }}
+              <span *ngIf="(genres.value?.length || 0) > 1" class="example-additional-selection">
+                (+{{ (genres.value?.length || 0) - 1 }} {{ genres.value?.length === 2 ? 'other' : 'others' }})
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let genre of genreList" [value]="genre">{{ genre }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    
+  
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Review</mat-label>
+        <mat-select formControlName="review" required>
+          <mat-option value="">Select Review</mat-option>
+          <mat-option *ngFor="let num of [1, 2, 3, 4, 5]" [value]="num">{{num}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" required></textarea>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary"type="submit" [disabled]="!bookForm.valid">Submit</button>
+  </form>
+  
