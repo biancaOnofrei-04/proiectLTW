@@ -1,0 +1,51 @@
+[
+    {
+      "bookTitle": "Crime and Punishment",
+      "author": "Fyodor Dostoevsky",
+      "numberOfPages": 545,
+      "genres": ["Psychological fiction", "Philosophical novel", "Crime fiction"],
+      "review": 4,
+      "description": "A psychological thriller that delves into the complexities of guilt and morality, following the story of Rodion Raskolnikov, a young and troubled former student in St. Petersburg."
+    },
+    {
+      "bookTitle": "The Brothers Karamazov",
+      "author": "Fyodor Dostoevsky",
+      "numberOfPages": 824,
+      "genres": ["Philosophical novel", "Family saga", "Tragicomedy"],
+      "review": 5,
+      "description": "A masterpiece exploring the intricacies of faith, family, and the human condition, centering around the tumultuous relationships within the Karamazov family and the philosophical debates they engage in."
+    },
+    {
+      "bookTitle": "Anna Karenina",
+      "author": "Leo Tolstoy",
+      "numberOfPages": 864,
+      "genres": ["Novel", "Realism", "Tragedy"],
+      "review": 4,
+      "description": "A classic novel portraying the tragic consequences of forbidden love and societal expectations, set against the backdrop of 19th-century Russian aristocracy."
+    },
+    {
+      "bookTitle": "Wuthering Heights",
+      "author": "Emily Brontë",
+      "numberOfPages": 342,
+      "genres": ["Gothic fiction", "Romantic novel", "Tragedy"],
+      "review": 5,
+      "description": "A dark and passionate tale of love and revenge, unfolding on the desolate moors of Yorkshire, as the unconventional relationship between Heathcliff and Catherine Earnshaw shapes the destiny of Wuthering Heights."
+    },
+    {
+      "bookTitle": "The Iliad",
+      "author": "Homer",
+      "numberOfPages": 683,
+      "genres": ["Epic poetry", "Mythology", "War story"],
+      "review": 4,
+      "description": "An ancient Greek epic poem that narrates the events of the Trojan War, featuring heroes and gods in a timeless exploration of honor, glory, and the consequences of war."
+    },
+    {
+      "bookTitle": "The Odyssey",
+      "author": "Homer",
+      "numberOfPages": 541,
+      "genres": ["Epic poetry", "Mythology", "Adventure"],
+      "review": 4,
+      "description": "A legendary tale of Odysseus's epic journey home after the Trojan War, filled with mythical creatures, challenges, and encounters, showcasing the hero's cunning and perseverance."
+    }
+  ]
+  
