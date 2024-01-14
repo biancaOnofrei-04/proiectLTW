@@ -18,4 +18,7 @@
   .demo-button + .demo-button {
     margin-left: 8px;
   }
+  .demo-table .highlight {
+    background-color: #655766; /* Adjust the background color as needed */
+  }
   

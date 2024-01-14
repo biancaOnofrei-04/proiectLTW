@@ -6,9 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MainLibraryBookDataService {
+  private apiUrl = 'assets/mainLib.json';
   constructor(private httpClient: HttpClient) {}
 
   getData(): Observable<any> {
     return this.httpClient.get<any>('assets/mainLib.json');
   }
+
 }
