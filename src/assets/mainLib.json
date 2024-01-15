@@ -46,6 +46,55 @@
       "genres": ["Epic poetry", "Mythology", "Adventure"],
       "review": 4,
       "description": "A legendary tale of Odysseus's epic journey home after the Trojan War, filled with mythical creatures, challenges, and encounters, showcasing the hero's cunning and perseverance."
+    },
+    {
+      "bookTitle": "Red Rising",
+      "author": "Pierce Brown",
+      "numberOfPages": 382,
+      "genres": ["Science fiction", "Dystopian fiction"],
+      "review": 4,
+      "description": "A dystopian science fiction novel following the story of Darrow, a Red, who infiltrates the Golds' society to bring about revolution and justice."
+    },
+    {
+      "bookTitle": "Golden Son",
+      "author": "Pierce Brown",
+      "numberOfPages": 464,
+      "genres": ["Science fiction", "Dystopian fiction"],
+      "review": 4,
+      "description": "The sequel to Red Rising, continuing Darrow's journey as he navigates the complex world of the Golds and battles political intrigue and warfare."
+    },
+    {
+      "bookTitle": "The Lies of Locke Lamora",
+      "author": "Scott Lynch",
+      "numberOfPages": 499,
+      "genres": ["Fantasy", "Crime fiction"],
+      "review": 5,
+      "description": "A fantasy novel set in the dangerous and vibrant city of Camorr, following the exploits of the skilled con artist Locke Lamora and his band of fellow thieves."
+    },
+    {
+      "bookTitle": "Golden Fool",
+      "author": "Robin Hobb",
+      "numberOfPages": 688,
+      "genres": ["Fantasy", "Epic fantasy"],
+      "review": 4,
+      "description": "Continuing the epic fantasy saga of the Farseer Trilogy, exploring the complex political and magical landscape of the Six Duchies."
+    },
+    {
+      "bookTitle": "Oathbringer",
+      "author": "Brandon Sanderson",
+      "numberOfPages": 1233,
+      "genres": ["Fantasy", "Epic fantasy"],
+      "review": 5,
+      "description": "The third book in the Stormlight Archive series, delving into the vast and magical world of Roshar as characters confront powerful enemies and unravel ancient mysteries."
+    },
+    {
+      "bookTitle": "Jade City",
+      "author": "Fonda Lee",
+      "numberOfPages": 512,
+      "genres": ["Fantasy", "Urban fantasy"],
+      "review": 4,
+      "description": "Set in the fictional city of Janloon, Jade City explores the conflicts and intrigue surrounding the powerful jade, a substance that grants supernatural abilities."
     }
+
   ]
   
